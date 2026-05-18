@@ -844,6 +844,20 @@ pub fn main() {
 }
 
 #[test]
+fn rename_type_parameter() {
+    assert_rename!(
+        "
+pub type Type(inner) {
+    Wibble(inner)
+    Wobble(inner)
+}
+    ",
+        "renamed",
+        find_position_of("inner")
+    );
+}
+
+#[test]
 fn rename_type_variant_from_definition() {
     assert_rename!(
         (
